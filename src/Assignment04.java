@@ -16,11 +16,12 @@ public class Assignment04 {
 		
 		ArrayList<Item> cargohold = new ArrayList<Item>();
 		java.io.File file = new java.io.File("data.txt");
+		if(file.exists()) {loadData(file, cargohold);};
 		
 		System.out.println("Welcome to the BlackStar Cargo Hold interface.");
 		System.out.println("Please select a number from the options below");
 		System.out.println("");
-
+		
 		while (true) {
 			// Give the user a list of their options
 			System.out.println("1: Add an item to the cargo hold.");
@@ -34,7 +35,6 @@ public class Assignment04 {
 			// Get the user input
 			int userChoice = input.nextInt();
 			input.nextLine();
-			loadData(file, cargohold);
 			
 			switch (userChoice) {
 				case 1:
@@ -43,6 +43,7 @@ public class Assignment04 {
 					break;
 				case 2:
 					removeItem(cargohold);
+					eraseFile(file);
 					storeData(file, cargohold);
 					break;
 				case 3:
@@ -56,6 +57,7 @@ public class Assignment04 {
 					displayItems(cargohold);
 					break;
 				case 6:
+					cargohold.clear();
 					eraseFile(file);
 					break;
 				case 7:
